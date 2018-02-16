@@ -24,24 +24,24 @@ public class PaddleScript : MonoBehaviour {
 	void FixedUpdate () {
 		if (isPlayerTwo) { // is this player 2?
 			if (Input.GetKey ("o"))//make o the up key for player2
-				MoveUp (); // 
+				MoveUp (); // call move up
 			else if (Input.GetKey ("l")) //make l the down key for player2
-				MoveDown (); //
+				MoveDown (); //call move down
 		}	//end player 2 control scheme
 		else { // if it's not player 2 (making it player1)
 			if (Input.GetKey ("q")) //make q the up key for player1
-				MoveUp ();
-			else if (Input.GetKey ("a"))
-				MoveDown (); //make a the down key for player2
+				MoveUp (); //call move up
+			else if (Input.GetKey ("a"))//make a the down key for player2
+				MoveDown (); //call move down
 		}//end player 1 control scheme
-
-		if (previousPositionY > myTransform.position.y) //indicating direction of movement based
-														//on the comparison of the two posistions
-			direction = -1;
-		else if (previousPositionY < myTransform.position.y)
-			direction = 1;
-		else
-			direction = 0;
+//
+//		if (previousPositionY > myTransform.position.y) //indicating direction of movement based
+//														//on the comparison of the two posistions
+//			direction = -1; //move down
+//		else if (previousPositionY < myTransform.position.y)
+//			direction = 1; //move up
+//		else
+//			direction = 0; //elso no movement
 
 	}//END FIXED UPDATE
 		

@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager: MonoBehaviour {
 
 	int playerOneScore, playerTwoScore;
-	Text ScoreText;
+	//Text ScoreText;
 	private List<BallScript> balls;
 	public GameObject ballPrefab;
 	public Vector3 ballSpawnPoint;
@@ -15,14 +15,14 @@ public class GameManager: MonoBehaviour {
 	private float paddleDistance;
 	public PaddleScript[] paddles;
 	private GoalScript[] goals;
-	public SceneManager[] sm;
+	public  SceneManager[] sm;
 
 	public static GameManager instance = null;
 	public int score = 0;
 
 	void Start () {
-		sm = SceneManager;  //assign a abbriviation for scene manager
-		ScoreText; // the text component
+//	sm = SceneManager;  //assign a abbriviation for scene manager
+	//	ScoreText; // the text component
 		goals = walls.GetComponentsInChildren<GoalScript> (); //find the goals by finding the objects with the goal script attached to them
 		paddleDistance = paddles [0].transform.position.x - goals [0].GetComponent<BoxCollider2D> ().bounds.max.x; //find the distance between the paddles and the goal walls
 		balls = new List<BallScript> (); //make a list to keep all the new balls in
@@ -33,7 +33,7 @@ public class GameManager: MonoBehaviour {
 		if (instance == null) {
 			instance = this;
 			DontDestroyOnLoad(gameObject);
-		}
+		}//end if
 		else {
 			instance.playerOneScore = 0;
 			instance.playerTwoScore = 0;
@@ -43,20 +43,20 @@ public class GameManager: MonoBehaviour {
 	}//END START
 
 	void Update () {
-		ScoreText = "Score" + "Player One" + playerOneScore + "Player Two" + playerTwoScore; //tell the text what to display
-		if (Input.GetKeyDown (KeyCode.Space)){ //if the spacebar is pressed then
-			StartGame ();//start the game
+//		ScoreText = "Score" + "Player One" + playerOneScore + "Player Two" + playerTwoScore; //tell the text what to display
+//		if (Input.GetKeyDown (KeyCode.Space)){ //if the spacebar is pressed then
+//		StartGame ();//start the game
 	}//END UPDATE
 
 	void GameOver()	{
-		if (playerOneScore > playerTwoScore) { //if playerone's score is greater than playertwo's
-			sm.LoadScene ("PlayerOneWinner"); //then load the 'PlayerOneWinner' scene 
-		}//end if1
-	
-			else {
-				sm.LoadScene ("PlayerTwoWinner"); //then load the 'PlayerTwoWinner's scene 
-			}//end if2
-				
+//		if (playerOneScore > playerTwoScore) { //if playerone's score is greater than playertwo's
+//			sm.LoadScene ("PlayerOneWinner"); //then load the 'PlayerOneWinner' scene 
+//		}//end if1
+//	
+//			else {
+//				sm.LoadScene ("PlayerTwoWinner"); //then load the 'PlayerTwoWinner's scene 
+//			}//end if2
+//				
 	}//END GAMEOVER
 
 	void StartGame(){
@@ -77,9 +77,10 @@ public class GameManager: MonoBehaviour {
 			GameManager.instance.playerTwoScore++;
 		// then check if the player has won
 		if (playerOneScore >= 10)
-			GameOver (1);
+			GameOver ();
+			
 		else if (playerTwoScore >= 10)
-			GameOver (2);
+			GameOver ();
 
 	}//END GOAL SCORED
 

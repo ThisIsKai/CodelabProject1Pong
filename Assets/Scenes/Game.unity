@@ -430,6 +430,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 50210864716288872, guid: 2713b32b9861e445684e34bf150d7d07,
+        type: 2}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 96859279276742896, guid: 2713b32b9861e445684e34bf150d7d07,
+        type: 2}
+      propertyPath: m_MinVertexDistance
+      value: 0.03
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2713b32b9861e445684e34bf150d7d07, type: 2}
   m_IsPrefabParent: 0
@@ -1144,7 +1154,7 @@ GameObject:
   - component: {fileID: 2077568623}
   - component: {fileID: 2077568622}
   m_Layer: 0
-  m_Name: ScoreText
+  m_Name: ScoreTextObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

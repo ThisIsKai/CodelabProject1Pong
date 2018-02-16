@@ -13,7 +13,7 @@ public class BallScript : MonoBehaviour {
 
 	void Start () {
 		myBody = GetComponent<Rigidbody2D>(); //find the rigidbody
-		myBody.AddForce (new Vector2 (forceValue * (Random(-150,150)), (Random(-150,150)))); //give it force
+		myBody.AddForce (new Vector2 (forceValue * (Random.Range(-150,150)), (Random.Range(-150,150)))); //give it force
 	}//END START
 		
 	public void Reset() { // reset the ball position and restart the ball movement

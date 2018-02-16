@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager: MonoBehaviour {
 
@@ -17,20 +17,19 @@ public class GameManager: MonoBehaviour {
 	private GoalScript[] goals;
 	public SceneManager[] sm;
 
-
 	public static GameManager instance = null;
-
 	public int score = 0;
 
-
-	// Use this for initialization
 	void Start () {
-		ScoreText = GetComponent<Text> ();
-		goals = walls.GetComponentsInChildren<GoalScript>();
-		paddleDistance = paddles [0].transform.position.x - goals [0].GetComponent<BoxCollider2D> ().bounds.max.x;
-		balls = new List<BallScript> ();
-		StartGame ();
-	
+		sm = SceneManager;  //assign a abbriviation for scene manager
+		ScoreText; // the text component
+		goals = walls.GetComponentsInChildren<GoalScript> (); //find the goals by finding the objects with the goal script attached to them
+		paddleDistance = paddles [0].transform.position.x - goals [0].GetComponent<BoxCollider2D> ().bounds.max.x; //find the distance between the paddles and the goal walls
+		balls = new List<BallScript> (); //make a list to keep all the new balls in
+		StartGame (); //run the start function
+
+
+
 		if (instance == null) {
 			instance = this;
 			DontDestroyOnLoad(gameObject);
@@ -38,45 +37,40 @@ public class GameManager: MonoBehaviour {
 		else {
 			instance.playerOneScore = 0;
 			instance.playerTwoScore = 0;
-
-			Destroy(gameObject); // THERE CAN BE ONLY ONE!
-		}
+			Destroy(gameObject); 
+		}//end else
 		
 	}//END START
 
-	// Update is called once per frame
 	void Update () {
-	ScoreText.text = "Score" + "Player One" + playerOneScore + "Player Two" + playerTwoScore;
-		if (Input.GetKeyDown (KeyCode.Space))
-			StartGame ();
-
+		ScoreText = "Score" + "Player One" + playerOneScore + "Player Two" + playerTwoScore; //tell the text what to display
+		if (Input.GetKeyDown (KeyCode.Space)){ //if the spacebar is pressed then
+			StartGame ();//start the game
 	}//END UPDATE
 
 	void GameOver()	{
-		if (playerOneScore > playerTwoScore) {
-			sm.LoadScene ("PlayerOneWinner");
-		}
+		if (playerOneScore > playerTwoScore) { //if playerone's score is greater than playertwo's
+			sm.LoadScene ("PlayerOneWinner"); //then load the 'PlayerOneWinner' scene 
+		}//end if1
 	
-			else if { (playerOneScore < playerTwoScore) 
-			sm.LoadScene ("PlayerTwoWinner");
-		}
-		// display game win text saying "player 1 wins" or whatever
-
+			else {
+				sm.LoadScene ("PlayerTwoWinner"); //then load the 'PlayerTwoWinner's scene 
+			}//end if2
+				
 	}//END GAMEOVER
 
 	void StartGame(){
-		for (int i = balls.Count -1; i >= 0; i--) {
+		for (int i = balls.Count -1; i >= 0; i--) { 
 			DestroyBall (balls [i]);
-		}
+		}//end for ball loop
 //		playerOneScore = 0; //set player one's starting score to 0
 //		playerTwoScore = 0;//set player two's starting score to 0
-		balls = new List<BallScript>();
+		balls = new List<BallScript>(); 
 		AddBall ();
-	}
+	}//END STARTGAME
 
-	public void GoalScored(int playerNumber) {
-		// increase the score for whichever player scored
-		AddBall();
+	public void GoalScored(int playerNumber) { // increase the score for whichever player scored
+		AddBall(); 
 		if (playerNumber == 1)
 			GameManager.instance.playerOneScore++;
 		else if (playerNumber == 2)
@@ -102,7 +96,7 @@ public class GameManager: MonoBehaviour {
 	void DestroyBall(BallScript ball){
 		balls.Remove (ball);
 		Destroy (ball.gameObject);
-	}
+	}//END DESTROY BALL
 
 	void ZoomOut(){
 		Camera.main.orthographicSize *= zoomOutFactor;
@@ -122,7 +116,7 @@ public class GameManager: MonoBehaviour {
 //			paddles [i].transform.position = new Vector3 (xPos, paddles [i].transform.position.y, paddles [i].transform.position.z);
 //
 //		}
-	}
+	}//END ZOOM OUT
 		
 }//END SCRIPT
 

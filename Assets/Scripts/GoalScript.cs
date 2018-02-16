@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GoalScript : MonoBehaviour {
 
 	[SerializeField]
 	int attackingPlayer; // which player scores into this goal
 	[SerializeField]
-	GameManager gameMan; // this will hold a reference to the game manager script
+	GameManager gameMan; // this is a reference to the game manager script
 
 
 	void Start () {
